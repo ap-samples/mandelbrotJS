@@ -1,8 +1,8 @@
 var canv = document.getElementById("canv");
 var ctx = canv.getContext("2d");
+var limitCircleDiameter = 4;
 
 const MAX_ITER = 1000;
-const LIMIT_CIRCLE_DIAMETER = 4;
 const IMG_WIDTH = canv.width;
 const IMG_HEIGHT = canv.height;
 const HALF_IMG_HEIGHT = canv.height / 2;
@@ -54,7 +54,7 @@ function getPixelColour(col, row, colours){
 	var cReal = (col - IMG_WIDTH/2)*4.0/IMG_WIDTH;
 	var cImaginary = (row - IMG_HEIGHT/2)*4.0/IMG_WIDTH;
 			
-	while((x*x+y*y) < 4 && currIteration < MAX_ITER){
+	while((x*x+y*y) < limitCircleDiameter && currIteration < MAX_ITER){
 		xNew = (x*x - y*y) + cReal;
 		y = 2*x*y + cImaginary;
 		x = xNew;
