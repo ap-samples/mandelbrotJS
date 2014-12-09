@@ -1,0 +1,1 @@
+document.getElementById('limitDiameter').addEventListener('change', function(){ drawMandelbrotFractal(); });

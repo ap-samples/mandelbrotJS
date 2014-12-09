@@ -1,6 +1,5 @@
 var canv = document.getElementById("canv");
 var ctx = canv.getContext("2d");
-var limitCircleDiameter = 4;
 
 const MAX_ITER = 1000;
 const IMG_WIDTH = canv.width;
@@ -27,6 +26,10 @@ function drawMandelbrotFractal(){
 	var colours = [];
 	var currColour;
 	var red, green, blue;
+	var diameterRangeElem = document.getElementById('limitDiameter');
+	console.log(diameterRangeElem);
+	var limitCircleDiameter = diameterRangeElem.value;
+	diameterRangeElem.disabled = true;
 	
 	for(var i = 0; i < MAX_ITER; i++){
 		red = getColourValue(i*7);
@@ -38,14 +41,16 @@ function drawMandelbrotFractal(){
 	
 	for(var row=0; row < IMG_HEIGHT; row++){
 		for(var col=0; col < IMG_WIDTH; col++){
-			currColour = getPixelColour(col, row, colours);
+			currColour = getPixelColour(col, row, colours, limitCircleDiameter);
 					
 			putPixel(col, row, ctx, currColour);
 		} 
 	}
+	
+	diameterRangeElem.disabled = false;
 }
 
-function getPixelColour(col, row, colours){
+function getPixelColour(col, row, colours, limitCircleDiameter){
 	'use strict';
 	var currIteration = 0;
 	var x = 0;
